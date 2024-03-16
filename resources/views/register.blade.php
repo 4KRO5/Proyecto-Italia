@@ -3,20 +3,57 @@
 
 <head>
     <title>Registro de usuario</title>
-    <link href="{{ asset('assets/css/login.css') }}" rel="stylesheet">
-    <!-- Agrega los enlaces a Bootstrap u otros estilos si es necesario -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #1C1C1C;
+        }
+
+        .bg {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .centered {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .firstLine {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .secondLine {
+            margin-bottom: 20px;
+        }
+
+        .register-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .CustomInput {
+            border-radius: 5px;
+        }
+
+        #registerButton {
+            width: 100%;
+        }
+    </style>
 </head>
 
-<body style="background-color: #1C1C1C;">
+<body>
 
     <div class="bg text-center">
-    <a href="{{ route('login') }}" class="circular-button"></a>
         <div class="centered">
-            
-            <p class="firstLine"> R &nbsp;&nbsp;&nbsp; E &nbsp;&nbsp;&nbsp; G &nbsp;&nbsp;&nbsp; I &nbsp;&nbsp;&nbsp; S &nbsp;&nbsp;&nbsp; T &nbsp;&nbsp;&nbsp; E &nbsp;&nbsp;&nbsp; R </p>
-
-            <p class="secondLine">&nbsp;&nbsp;&nbsp;</p>
+            <p class="firstLine">REGISTRER</p>
 
             <form class="register-form" method="POST" action="{{ route('register.submit') }}">
                 @csrf
@@ -26,7 +63,7 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="text" class="form-control CustomInput" id="last_name" name="last_name" placeholder="last_name" required onkeypress="return isNaN(event.key)">
+                    <input type="text" class="form-control CustomInput" id="last_name" name="last_name" placeholder="Last Name" required onkeypress="return isNaN(event.key)">
                 </div>
 
                 <div class="form-group">
@@ -38,13 +75,11 @@
                     <span style="color: red;">@error('password') {{ $message }} @enderror</span>
                 </div>
 
-                <p class="secondLine">&nbsp;&nbsp;&nbsp;</p>
-                <button type="submit" class="btn btn-success" id="registerButton">register</button>
+                <button type="submit" class="btn btn-success" id="registerButton">Register</button>
             </form>
         </div>
     </div>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
