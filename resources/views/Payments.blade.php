@@ -189,6 +189,30 @@
     </div>
 
     <script>
+            function validarFormulario() {
+            var userId = document.getElementById('user_id').value;
+            var membershipsId = document.getElementById('memberships_id').value;
+
+            if (userId === '' || membershipsId === '') {
+                alert('Por favor completa todos los campos.');
+                return false;
+            }
+
+            return true;
+        }
+
+        function mostrarAlerta(mensaje) {
+            alert(mensaje);
+        }
+
+        document.getElementById('paymentForm').onsubmit = function() {
+            if (validarFormulario()) {
+                mostrarAlerta('¡Pago creado exitosamente!');
+            } else {
+                return false;
+            }
+        };
+
         function togglePayments() {
             var showAll = {{ $showAll ? 'true' : 'false' }};
             window.location.href = '/payments?show_all=' + (showAll ? '0' : '1');

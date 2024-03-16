@@ -174,6 +174,7 @@
                 <th>Email</th>
                 <th>Acciones</th>
             </tr>
+
             @foreach ($users as $user)
                 <tr class="{{ $user->trashed() ? 'deleted-row' : '' }}">
                     <td>{{ $user->name }}</td>
@@ -185,16 +186,16 @@
                             @csrf
                             <button type="submit">Ver pagos</button>
                         </form>
-                        <form action="/users/{{ $user->id }}" method="POST">
+                        <form id="deleteUserForm_{{ $user->id }}" action="/users/{{ $user->id }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" {{ $user->trashed() ? 'disabled' : '' }}>Eliminar</button>
+                            <button type="button" onclick="confirmDeleteUser('{{ $user->id }}')" {{ $user->trashed() ? 'disabled' : '' }}>Eliminar</button>
                         </form>
                         @if ($user->trashed())
-                        <form action="/users/restore/{{ $user->id }}" method="POST">
-                            @csrf
-                            <button type="submit">Habilitar Cuenta</button>
-                        </form>
+                            <form action="/users/restore/{{ $user->id }}" method="POST">
+                                @csrf
+                                <button type="submit">Habilitar Cuenta</button>
+                            </form>
                         @endif
                     </td>
                 </tr>
@@ -224,35 +225,48 @@
 
     <script>
         function validateForm() {
-            var emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-            var name = document.getElementById('name').value;
-            var lastName = document.getElementById('last_name').value;
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
-            var confirmPassword = document.getElementById('confirm_password').value;
+        var emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+        var name = document.getElementById('name').value;
+        var lastName = document.getElementById('last_name').value;
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirm_password').value;
 
-            if (name.trim() === '' || lastName.trim() === '' || email.trim() === '' || password.trim() === '' || confirmPassword.trim() === '') {
-                alert('Todos los campos son obligatorios');
-                return false;
-            }
-
-            if (!emailRegex.test(email) || !emailRegex.test(confirmEmail)) {
-                alert('Por favor, ingrese correos electrónicos válidos');
-                return false;
-            }
-
-            if (email !== confirmEmail) {
-                alert('Los correos electrónicos no coinciden');
-                return false;
-            }
-
-            if (password !== confirmPassword) {
-                alert('Las contraseñas no coinciden');
-                return false;
-            }
-
-            return true;
+        if (name.trim() === '' || lastName.trim() === '' || email.trim() === '' || password.trim() === '' || confirmPassword.trim() === '') {
+            alert('Todos los campos son obligatorios');
+            return false;
         }
+
+        if (!emailRegex.test(email)) {
+            alert('Por favor, ingrese un correo electrónico válido');
+            return false;
+        }
+
+        if (email !== confirmEmail) {
+            alert('Los correos electrónicos no coinciden');
+            return false;
+        }
+
+        if (password !== confirmPassword) {
+            alert('Las contraseñas no coinciden');
+            return false;
+        }
+
+        // Mostrar alerta de éxito
+        alert('Usuario creado exitosamente.');
+
+        return true;
+    }
+
+    function confirmDeleteUser(id) {
+        if (confirm('¿Está seguro de que desea eliminar este usuario?')) {
+            document.getElementById('deleteUserForm_' + id).submit();
+        }
+    }
+
+    function showSuccessAlert(message) {
+        alert(message);
+    }
 
         function toggleUsers() {
             var showAll = {{ $showAll ? 'true' : 'false' }};

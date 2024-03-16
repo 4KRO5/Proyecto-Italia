@@ -171,37 +171,49 @@
     </div>
 </div>
     <script>
-        function validateForm() {
-            var price = document.getElementById('price').value;
-            var numericPrice = parseFloat(price);
+function validateForm() {
+        var price = document.getElementById('price').value;
 
-            if (numericPrice < 0) {
-                alert('El precio no puede ser menor a 0');
-                return false;
-            }
+        // Verificar si el campo de precio está vacío o si contiene texto
+        if (price.trim() === '' || isNaN(parseFloat(price))) {
+            alert('Por favor, introduce un precio válido (solo números).');
+            return false;
+        }
 
+        // Convertir el valor a un número flotante para realizar la validación numérica adicional
+        var numericPrice = parseFloat(price);
+
+        // Verificar si el valor numérico es mayor o igual a cero
+        if (isNaN(numericPrice) || numericPrice < 0) {
+            alert('Por favor, introduce un precio válido (solo números positivos).');
+            return false;
+        }
+
+        return true;
+    }
+
+    function showAlert(message) {
+        alert(message);
+    }
+
+    document.getElementById('userForm').onsubmit = function() {
+        if (validateForm()) {
+            showAlert('¡Membresía actualizada exitosamente!');
             return true;
+        } else {
+            return false;
         }
+    };
 
-        document.getElementById('crearButton').onclick = function() {
-            document.getElementById('popupTitle').textContent = 'Crear Membresía';
-            document.getElementById('userForm').action = '/memberships';
-            document.getElementById('method').value = 'POST';
-            document.getElementById('submitButton').value = 'Crear';
-            document.getElementById('name').value = '';
-            document.getElementById('price').value = '';
-            document.getElementById('popup').style.display = 'block';
-        };
-
-        function editarUsuario(id, name, price, email) {
-            document.getElementById('popupTitle').textContent = 'Editar Membresía';
-            document.getElementById('userForm').action = '/memberships/' + id;
-            document.getElementById('method').value = 'PUT';
-            document.getElementById('submitButton').value = 'Guardar';
-            document.getElementById('name').value = name;
-            document.getElementById('price').value = price;
-            document.getElementById('popup').style.display = 'block';
-        }
+    function editarUsuario(id, name, price, email) {
+        document.getElementById('popupTitle').textContent = 'Editar Membresía';
+        document.getElementById('userForm').action = '/memberships/' + id;
+        document.getElementById('method').value = 'PUT';
+        document.getElementById('submitButton').value = 'Guardar';
+        document.getElementById('name').value = name;
+        document.getElementById('price').value = price;
+        document.getElementById('popup').style.display = 'block';
+    }
     </script>
 </body>
 </html>

@@ -165,7 +165,7 @@
                     <button onclick="editarInstructor('{{ $instructor->id }}', '{{ $instructor->name }}', '{{ $instructor->last_name }}', '{{ $instructor->specialty }}')" {{ $instructor->trashed() ? 'disabled' : '' }}>
                         Editar
                     </button>
-                    <form action="/instructors/{{ $instructor->id }}" method="POST">
+                    <form action="/instructors/{{ $instructor->id }}" method="POST" onsubmit="return confirmDelete()">
                         @csrf
                         @method('DELETE')
                         <button type="submit" {{ $instructor->trashed() ? 'disabled' : '' }}>
@@ -203,6 +203,40 @@
 </div>
 
 <script>
+    function confirmDelete() {
+    return confirm('¿Estás seguro de que deseas eliminar este instructor? Esta acción no se puede deshacer.');
+}
+
+        function validateInstructorForm() {
+        var name = document.getElementById('name').value.trim();
+        var lastName = document.getElementById('last_name').value.trim();
+        var specialty = document.getElementById('specialty').value.trim();
+
+        if (name === '' || lastName === '' || specialty === '') {
+            alert('Por favor, complete todos los campos.');
+            return false;
+        }
+
+        return true;
+    }
+
+    function showAlert(message) {
+        alert(message);
+    }
+
+    document.getElementById('instructorForm').onsubmit = function() {
+        if (validateInstructorForm()) {
+            showAlert('¡Instructor creado o actualizado exitosamente!');
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    function confirmDelete() {
+        return confirm('¿Estás seguro de que deseas eliminar este instructor?');
+    }
+
     function toggleInstructors() {
         var showAll = {{ $showAll ? 'true' : 'false' }};
         window.location.href = '/instructors?show_all=' + (showAll ? '0' : '1');

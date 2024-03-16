@@ -228,6 +228,7 @@
     </div>
 
     <script>
+        
 document.addEventListener("DOMContentLoaded", function() {
     disableDelayedLections();
 });
@@ -258,32 +259,38 @@ function disableDelayedLections() {
     });
 }
 
+function validateLectionForm() {
+    var user_id = document.getElementById('user_id').value;
+    var instructor_id = document.getElementById('instructor_id').value;
+    var date = document.getElementById('date').value;
+    var schedule = document.getElementById('schedule').value;
 
-        function validateLectionForm() {
-            var user_id = document.getElementById('user_id').value;
-            var instructor_id = document.getElementById('instructor_id').value;
-            var date = document.getElementById('date').value;
-            var schedule = document.getElementById('schedule').value;
+    if (!user_id || !instructor_id || !date || !schedule) {
+        alert('Por favor, completa todos los campos.');
+        return false;
+    }
 
-            if (!user_id || !instructor_id || !date || !schedule) {
-                alert('Por favor, completa todos los campos.');
-                return false;
-            }
+    var enteredDateTime = new Date(date + 'T' + schedule);
+    enteredDateTime.setSeconds(0);
 
-            var enteredDateTime = new Date(date + 'T' + schedule);
-            enteredDateTime.setSeconds(0);
+    var currentDate = new Date();
+    currentDate.setSeconds(0);
+    currentDate.setMinutes(currentDate.getMinutes() - 1);
 
-            var currentDate = new Date();
-            currentDate.setSeconds(0);
-            currentDate.setMinutes(currentDate.getMinutes() - 1);
+    if (enteredDateTime < currentDate) {
+        alert('La fecha y hora deben ser futuras.');
+        return false;
+    }
 
-            if (enteredDateTime < currentDate) {
-                alert('La fecha y hora deben ser futuras.');
-                return false;
-            }
-
-            return true;
-        }
+    // La validación ha pasado, se muestra una alerta de éxito dependiendo si se está creando o actualizando.
+    if(document.getElementById('method').value === 'POST'){
+        alert('La lección se ha creado correctamente.');
+    } else {
+        alert('La lección se ha actualizado correctamente.');
+    }
+    
+    return true;
+}
 
         function togglePayments() {
             var showAll = {{ $showAll ? 'true' : 'false' }};
