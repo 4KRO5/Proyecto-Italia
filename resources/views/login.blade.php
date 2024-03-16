@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Iniciar Sesión</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -59,25 +59,25 @@
 
     <div class="bg">
         <div class="centered">
-            <p class="firstLine">LOGIN</p>
+            <p class="firstLine">INICIAR SESIÓN</p>
 
             <form class="login-form" method="POST" action="{{ route('login.submit') }}">
                 @csrf
 
                 <div class="form-group">
-                    <input type="email" class="form-control CustomInput" id="email" name="email" placeholder="Email" autocomplete="off">
+                    <input type="email" class="form-control CustomInput" id="email" name="email" placeholder="Correo electrónico" autocomplete="off">
                 </div>
 
                 <div class="form-group">
-                    <input type="password" class="form-control CustomInput" id="password" name="password" placeholder="Password" autocomplete="off">
+                    <input type="password" class="form-control CustomInput" id="password" name="password" placeholder="Contraseña" autocomplete="off">
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success" id="loginButton">Login</button>
+                    <button type="submit" class="btn btn-success" id="loginButton">Iniciar Sesión</button>
                 </div>
 
                 <div class="redirectText">
-                    <p>Don't have an account? <a href="{{ route('register') }}">Register here</a></p>
+                    <p>¿No tienes una cuenta? <a href="{{ route('register') }}">Regístrate aquí</a></p>
                 </div>
             </form>
         </div>

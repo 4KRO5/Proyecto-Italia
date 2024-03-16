@@ -146,7 +146,7 @@
         <h1>Registro de lecciones</h1>
         <form action="/home" method="GET">
             @csrf
-            <button type="submit">Home</button>
+            <button type="submit">Inicio</button>
         </form>
         <button id="createLectionButton">Crear Lección</button>
         <button onclick="togglePayments()">
@@ -194,12 +194,12 @@
         </table>
 
         <div id="popup">
-            <h2 id="popupTitle">Create Lection</h2>
+            <h2 id="popupTitle">Crear Lección</h2>
             <form id="lectionForm" action="/lections/{id}" method="POST" onsubmit="return validateLectionForm()">
                 @csrf
                 @method('PUT')
                 <input type="hidden" id="method" name="_method" value="POST">
-                <label for="user_id">User:</label><br>
+                <label for="user_id">Usuario:</label><br>
                 <select id="user_id" name="user_id">
                     @if($users instanceof \App\Models\User)
                     <option value="{{ $users->id }}">{{ $users->name }}</option>
@@ -217,13 +217,13 @@
                     <option value="{{ $instructor->id }}">{{ $instructor->name }}</option>
                     @endforeach
                 </select><br>
-                <label for="date">Date:</label><br>
+                <label for="date">Fecha:</label><br>
                 <input type="date" id="date" name="date"><br>
-                <label for="schedule">Schedule:</label><br>
+                <label for="schedule">Hora:</label><br>
                 <input type="time" id="schedule" name="schedule"><br>
-                <input type="submit" id="submitButton" value="Create">
+                <input type="submit" id="submitButton" value="Crear">
             </form>
-            <button onclick="document.getElementById('popup').style.display='none'">Close</button>
+            <button onclick="document.getElementById('popup').style.display='none'">Cerrar</button>
         </div>
     </div>
 
@@ -298,10 +298,10 @@ function validateLectionForm() {
         }
         
         document.getElementById('createLectionButton').onclick = function() {
-            document.getElementById('popupTitle').textContent = 'Create Lection';
+            document.getElementById('popupTitle').textContent = 'Crear Lección';
             document.getElementById('lectionForm').action = '/lections';
             document.getElementById('method').value = 'POST';
-            document.getElementById('submitButton').value = 'Create';
+            document.getElementById('submitButton').value = 'Crear';
             document.getElementById('user_id').value = '';
             document.getElementById('instructor_id').value = '';
             document.getElementById('date').value = '';
@@ -313,10 +313,10 @@ function validateLectionForm() {
             fetch('/lections/' + id)
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('popupTitle').textContent = 'Edit Lection';
+                    document.getElementById('popupTitle').textContent = 'Editar Lección';
                     document.getElementById('lectionForm').action = '/lections/' + id;
                     document.getElementById('method').value = 'PUT';
-                    document.getElementById('submitButton').value = 'Save';
+                    document.getElementById('submitButton').value = 'Guardar';
                     document.getElementById('user_id').value = data.user_id;
                     document.getElementById('instructor_id').value = data.instructor_id;
                     document.getElementById('date').value = data.date;

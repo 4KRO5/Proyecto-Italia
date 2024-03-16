@@ -53,29 +53,29 @@
 
     <div class="bg text-center">
         <div class="centered">
-            <p class="firstLine">REGISTRER</p>
+            <p class="firstLine">REGISTRO</p>
 
             <form class="register-form" method="POST" action="{{ route('register.submit') }}">
                 @csrf
 
                 <div class="form-group">
-                    <input type="text" class="form-control CustomInput" id="name" name="name" placeholder="Name" required onkeypress="return isNaN(event.key)">
+                    <input type="text" class="form-control CustomInput" id="name" name="name" placeholder="Nombre" required onkeypress="return isNaN(event.key)">
                 </div>
 
                 <div class="form-group">
-                    <input type="text" class="form-control CustomInput" id="last_name" name="last_name" placeholder="Last Name" required onkeypress="return isNaN(event.key)">
+                    <input type="text" class="form-control CustomInput" id="last_name" name="last_name" placeholder="Apellido" required onkeypress="return isNaN(event.key)">
                 </div>
 
                 <div class="form-group">
-                    <input type="email" class="form-control CustomInput" id="email" name="email" placeholder="Email" required autocomplete="off">
+                    <input type="email" class="form-control CustomInput" id="email" name="email" placeholder="Correo electrónico" required autocomplete="off">
                 </div>
 
                 <div class="form-group">
-                    <input type="password" class="form-control CustomInput" id="password" name="password" placeholder="Password (between 6 and 10 characters)" minlength="6" maxlength="10" required autocomplete="off">
+                    <input type="password" class="form-control CustomInput" id="password" name="password" placeholder="Contraseña (entre 6 y 10 caracteres)" minlength="6" maxlength="10" required autocomplete="off">
                     <span style="color: red;">@error('password') {{ $message }} @enderror</span>
                 </div>
 
-                <button type="submit" class="btn btn-success" id="registerButton">Register</button>
+                <button type="submit" class="btn btn-success" id="registerButton">Registrar</button>
             </form>
         </div>
     </div>

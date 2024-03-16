@@ -18,7 +18,7 @@
         .action-buttons {
             display: flex;
             gap: 10px;
-            align-items: center; /* Align items vertically in the center */
+            align-items: center; /* Alinear los elementos verticalmente en el centro */
         }
 
         .action-buttons button {
@@ -26,7 +26,7 @@
             border: none;
             cursor: pointer;
             border-radius: 4px;
-            margin-bottom: 0; /* Remove the margin-bottom */
+            margin-bottom: 0; /* Eliminar el margen inferior */
         }
 
         #container {
@@ -34,7 +34,7 @@
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow: auto; /* Change from 'hidden' to 'auto' */
+            overflow: auto; /* Cambiar de 'hidden' a 'auto' */
             margin: 20px;
             padding: 10px;
         }
@@ -131,7 +131,7 @@
     <h1>Registro de membresías</h1>
     <form action="/home" method="GET">
             @csrf
-            <button type="submit">Home</button>
+            <button type="submit">Inicio</button>
         </form>
     <table id="tablaDatos">
         <tr>
@@ -157,13 +157,13 @@
 
     <!-- Ventana emergente con el formulario para crear un usuario -->
     <div id="popup">
-        <h2 id="popupTitle">Crear Usuario</h2>
+        <h2 id="popupTitle">Crear Membresía</h2>
         <form id="userForm" action="/memberships" method="POST" onsubmit="return validateForm()">
             @csrf
             <input type="hidden" id="method" name="_method" value="POST">
             <label for="name">Nombre:</label><br>
             <input type="text" id="name" name="name"><br>
-            <label for="price">Price:</label><br>
+            <label for="price">Precio:</label><br>
             <input type="text" id="price" name="price"><br>
             <input type="submit" id="submitButton" value="Crear">
         </form>

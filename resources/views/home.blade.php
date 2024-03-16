@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="utf-8" />
@@ -8,7 +8,7 @@
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <!-- Enlace a FontAwesome para el ícono de búsqueda -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
-  <title>Home</title>
+  <title>Inicio</title>
   <style>
     body {
       background-color: #1C1C1C;
@@ -149,54 +149,54 @@
   <!-- Div de cuerpo -->
   <div class="container-fluid">
     <div class="row">
-      <!--Side bar-->
+      <!--Barra lateral-->
       <div class="d-none d-lg-block col-sm-auto sticky-top" id="sidebar1">
         <ul class="nav flex-column" id="sidebarNav">
           <li class="nav-item">
-            <a href="/home" id="homeLink" class="nav-link text-light p-5" style="color: #F1CCBA !important;" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
-              Home
+            <a href="/home" id="homeLink" class="nav-link text-light p-5" style="color: #F1CCBA !important;" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Inicio">
+              Inicio
             </a>
           </li>
           <li class="nav-item">
-            <a href="/users" id="dashboardLink" class="nav-link text-light p-5" style="color: #F1CCBA !important;" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Dashboard">
+            <a href="/users" id="dashboardLink" class="nav-link text-light p-5" style="color: #F1CCBA !important;" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Tablero">
               Usuarios
             </a>
           </li>
           <li class="nav-item">
-            <a href="/payments" id="ordersLink" class="nav-link text-light p-5" style="color: #F1CCBA !important;" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Orders">
+            <a href="/payments" id="ordersLink" class="nav-link text-light p-5" style="color: #F1CCBA !important;" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Pagos">
               Pagos
             </a>
           </li>
           <li class="nav-item">
-            <a href="/memberships" id="productsLink" class="nav-link text-light p-5" style="color: #F1CCBA !important;" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Products">
+            <a href="/memberships" id="productsLink" class="nav-link text-light p-5" style="color: #F1CCBA !important;" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Membresías">
               Membresías
             </a>
           </li>
           <li class="nav-item">
-            <a href="/instructors" id="customersLink" class="nav-link text-light p-5" style="color: #F1CCBA !important;" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Customers">
+            <a href="/instructors" id="customersLink" class="nav-link text-light p-5" style="color: #F1CCBA !important;" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Instructores">
               Instructores
             </a>
           </li>
           <li class="nav-item">
-            <a href="/lections" id="customersLink" class="nav-link text-light p-5" style="color: #F1CCBA !important;" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Customers">
+            <a href="/lections" id="customersLink" class="nav-link text-light p-5" style="color: #F1CCBA !important;" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Lecciones">
               Lecciones
             </a>
           </li>
           <li class="nav-item mt-auto">
-            <a href="/logout" id="logoutLink" class="nav-link text-light p-5" style="color: #F1CCBA !important;" title="" data-bs-toggle="tooltip" data-bs-placement="bottom-end" data-bs-original-title="LogOut">
+            <a href="/logout" id="logoutLink" class="nav-link text-light p-5" style="color: #F1CCBA !important;" title="" data-bs-toggle="tooltip" data-bs-placement="bottom-end" data-bs-original-title="Cerrar Sesión">
               Cerrar Sesión
             </a>
           </li>
         </ul>
       </div>
-      <!--Final de la sidebar-->
+      <!--Final de la barra lateral-->
 
       <!-- Contenido Principal de la base de datos -->
       <div class="col-sm p-5 min-vh-100">
-        <h1 class="text-center">Attendance Record</h1>
-        <!--Barra de busqueda-->
+        <h1 class="text-center">Registro de Asistencia</h1>
+        <!--Barra de búsqueda-->
         <div class="input-group">
-          <input type="search" id="searchInput" class="form-control" placeholder="Search" /><label class="form-label" for="searchInput">&nbsp;</label>
+          <input type="search" id="searchInput" class="form-control" placeholder="Buscar" /><label class="form-label" for="searchInput">&nbsp;</label>
           <div class="input-group-append">
             <button type="button" id="searchButton" class="btn btn-primary rounded-circle">
               <i class="fas fa-search"></i>
@@ -208,9 +208,9 @@
         <!-- Cambia la tabla original para que tenga una clase -->
         <table class="table" id="originalTable" style="width: 100%;" transition-style="in:square:hesitate">
           <tr>
-            <th>Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo Electrónico</th>
           </tr>
           <tbody>
             @foreach ($users as $user)
