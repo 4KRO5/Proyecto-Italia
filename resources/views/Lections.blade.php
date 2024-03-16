@@ -134,6 +134,11 @@
         .disabled-user {
             opacity: 0.5;
         }
+
+        .disabled-button {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body>
@@ -223,18 +228,57 @@
     </div>
 
     <script>
+document.addEventListener("DOMContentLoaded", function() {
+    disableDelayedLections();
+});
+
+function disableDelayedLections() {
+    var lectionRows = document.querySelectorAll("#lectionTable tr:not(:first-child)");
+    var currentDate = new Date();
+
+    lectionRows.forEach(function(row) {
+        var dateString = row.cells[2].textContent;
+        var timeString = row.cells[3].textContent;
+        var lectionDate = new Date(dateString + " " + timeString);
+        var timeDifference = currentDate.getTime() - lectionDate.getTime();
+        
+        if (timeDifference > 1000 * 60 * 6) {
+            var buttons = row.querySelectorAll("button");
+            buttons.forEach(function(button) {
+                button.classList.add("disabled-button");
+                button.onclick = function(event) {
+                    if (!button.disabled) {
+                        alert("Esta acción no está disponible para lecciones pasadas. (5 min. tolerancia)");
+                    }
+                    event.preventDefault();
+                };
+            });
+            row.classList.add("disabled-lection");
+        }
+    });
+}
+
+
         function validateLectionForm() {
-            // Get the date and schedule input values
+            var user_id = document.getElementById('user_id').value;
+            var instructor_id = document.getElementById('instructor_id').value;
             var date = document.getElementById('date').value;
             var schedule = document.getElementById('schedule').value;
 
-            var dateTimeString = date + ' ' + schedule;
+            if (!user_id || !instructor_id || !date || !schedule) {
+                alert('Por favor, completa todos los campos.');
+                return false;
+            }
+
+            var enteredDateTime = new Date(date + 'T' + schedule);
+            enteredDateTime.setSeconds(0);
+
             var currentDate = new Date();
             currentDate.setSeconds(0);
-            var enteredDateTime = new Date(dateTimeString);
+            currentDate.setMinutes(currentDate.getMinutes() - 1);
 
             if (enteredDateTime < currentDate) {
-                alert('Por favor ingrese una fecha y hora que no sean pasadas.');
+                alert('La fecha y hora deben ser futuras.');
                 return false;
             }
 
