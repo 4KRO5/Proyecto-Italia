@@ -31,10 +31,7 @@
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 30px;
-        }
-
-        .secondLine {
-            margin-bottom: 20px;
+            text-align: center; /* Alinea el texto al centro */
         }
 
         .login-form .form-group {
@@ -60,6 +57,12 @@
     <div class="bg">
         <div class="centered">
             <p class="firstLine">INICIAR SESIÓN</p>
+
+            @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+            @endif
 
             <form class="login-form" method="POST" action="{{ route('login.submit') }}">
                 @csrf

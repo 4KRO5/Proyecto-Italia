@@ -55,6 +55,24 @@
         <div class="centered">
             <p class="firstLine">REGISTRO</p>
 
+            @if(session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+            @endif
+
+            @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+            @endif
+
+            @if ($errors->has('email'))
+            <div class="alert alert-danger">
+                {{ $errors->first('email') }}
+            </div>
+            @endif
+
             <form class="register-form" method="POST" action="{{ route('register.submit') }}">
                 @csrf
 
@@ -77,6 +95,8 @@
 
                 <button type="submit" class="btn btn-success" id="registerButton">Registrar</button>
             </form>
+
+            <p>¿Ya tienes una cuenta? <a href="{{ route('login') }}">Inicia sesión</a></p>
         </div>
     </div>
 
